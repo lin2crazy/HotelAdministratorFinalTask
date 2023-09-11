@@ -66,7 +66,8 @@ public class GuestServiceImpl implements GuestService {
     @Transactional
     public void deleteById(int id) {
         Guest guest = readById(id);
-        guest.getRoom().removeGuest(guest);
+        if(guest.getRoom() != null)
+            guest.getRoom().removeGuest(guest);
         guestRepository.delete(guest);
     }
 
