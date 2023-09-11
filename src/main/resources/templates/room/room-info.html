@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="'Room ' + ${room.getRoomNumber()}"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+    <th:block th:replace="~{header :: header}"></th:block>
+    <br>
+
+    <div class="col-md-2 offset-md-5">
+        <h2>Room Info</h2>
+    </div>
+
+    <div class="col-md-6 offset-md-3">
+        <table class="table table">
+            <tr>
+                <td><b>Room Number:</b></td>
+                <td th:text="${room.getRoomNumber()}"></td>
+            </tr>
+            <tr>
+                <td><b>Room Class:</b></td>
+                <td th:text="${room.getRoomClass()}"></td>
+            </tr>
+            <tr>
+                <td><b>Number of beds:</b></td>
+                <td th:text="${room.getBedsNumber()}"></td>
+            </tr>
+            <tr>
+                <td><b>Price Per Day:</b></td>
+                <td th:text="${room.getPrice()}"></td>
+            </tr>
+            <tr>
+                <td><b>Availability:</b></td>
+                <td th:text="${room.isAvailable()? 'available': 'not available'}"></td>
+            </tr>
+            <tr>
+                <td><b>Created At:</b></td>
+                <td th:text="${#temporals.format(room.getCreatedAt(), 'dd-MM-yyyy HH:mm')}"></td>
+            </tr>
+            <tr>
+                <td><b>Updated At:</b></td>
+                <td th:text="${#temporals.format(room.getUpdatedAt(), 'dd-MM-yyyy HH:mm')}"></td>
+            </tr>
+        </table>
+        <a class="btn btn-md btn-primary" th:href="@{|/rooms/${room.getId()}/update|}">Edit</a>
+        <a class="btn btn-md btn-danger" th:href="@{|/rooms/${room.getId()}/delete|}">Remove</a>
+    </div>
+
+    <div class="col-md-6 offset-md-4" th:if="${!room.guestList.isEmpty()}">
+        <h2>Guests, who staying in this room</h2>
+    </div>
+
+    <div class="col-md-6 offset-md-3" th:if="${!room.guestList.isEmpty()}">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Full Name</th>
+                <th>Phone Number</th>
+                <th>Date Of Birth</th>
+            </tr>
+            </thead>
+            <tbody>
+            <div th:each="guest: ${guests}">
+                <tr>
+                    <td th:text="${guests.indexOf(guest) + 1}"/>
+                    <td>
+                        <a th:href="@{|/guests/${guest.id}|}" th:text="${guest.getName() + ' ' + guest.getSurname()}"/>
+                    </td>
+                    <td th:text="${guest.getPhoneNumber()}"/>
+                    <td th:text="${guest.getBirthDate()}"/>
+                </tr>
+            </div>
+            </tbody>
+        </table>
+    </div>
+
+
+
+    <div class="col-md-2 offset-md-5" th:unless="${!room.guestList.isEmpty()}">
+        <h2>No one lives here</h2>
+    </div>
+
+</body>
+</html>
