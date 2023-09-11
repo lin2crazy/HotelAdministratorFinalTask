@@ -128,13 +128,8 @@ public class GuestController {
     @GetMapping("{id}/update-reservation")
     public String updateReservation(@ModelAttribute("reservation") Reservation reservation, @PathVariable("id") int id) {
         Guest guest = guestService.readById(id);
-
         reservation.setGuestId(guest.getId());
-//        reservation.setRoomId(guest.getRoom().getId());
-//        reservation.setArrivalDate(guest.getArrivalDate());
         reservation.setDepartureDate(guest.getDepartureDate());
-//        reservation.setPrice(guest.getRoom().getPrice());
-
         return "receipt/update-receipt";
     }
 

@@ -18,18 +18,6 @@ public class Reservation {
     private int guestId;
     private int roomId;
     private double price;
-
-    @Override
-    public String toString() {
-        return "Reservation{" +
-                "arrivalDate=" + arrivalDate +
-                ", departureDate=" + departureDate +
-                ", guestId=" + guestId +
-                ", roomId=" + roomId +
-                ", price=" + price +
-                '}';
-    }
-
     public double getTotalPrice() {
         return ChronoUnit.HOURS.between(arrivalDate, departureDate) / 24.0 * price;
     }

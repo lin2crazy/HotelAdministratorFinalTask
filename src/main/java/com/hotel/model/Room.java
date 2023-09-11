@@ -66,30 +66,4 @@ public class Room {
         if(guestList.isEmpty())
             isAvailable = true;
     }
-
-    @Override
-    public String toString() {
-        return "Room{" +
-                "id=" + id +
-                ", roomNumber=" + roomNumber +
-                ", roomClass=" + roomClass +
-                ", bedsNumber=" + bedsNumber +
-                ", price=" + price +
-                ", isAvailable=" + isAvailable +
-                ", createdAt=" + createdAt +
-                ", updatedAt=" + updatedAt +
-                '}';
-    }
-
-    //    @Override
-//    public String toString() {
-//        return "Room{" +
-//                "id=" + id +
-//                ", roomNumber=" + roomNumber +
-//                ", roomClass=" + roomClass +
-//                ", bedsNumber=" + bedsNumber +
-//                ", price=" + price +
-//                ", isAvailable=" + isAvailable +
-//                '}';
-//    }
 }

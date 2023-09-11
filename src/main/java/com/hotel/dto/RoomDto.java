@@ -42,15 +42,4 @@ public class RoomDto {
     public void setIsAvailable(boolean available) {
         isAvailable = available;
     }
-
-    @Override
-    public String toString() {
-        return "RoomDto{" +
-                "roomNumber=" + roomNumber +
-                ", roomClass=" + roomClass +
-                ", bedsNumber=" + bedsNumber +
-                ", price=" + price +
-                ", isAvailable=" + isAvailable +
-                '}';
-    }
 }

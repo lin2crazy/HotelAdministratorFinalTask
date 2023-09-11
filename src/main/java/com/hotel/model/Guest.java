@@ -32,7 +32,8 @@ public class Guest {
     @Column(name = "birth_date")
     private LocalDate birthDate;
 
-//    @Pattern(regexp = "", message = "") // TODO: ADD A REGEXP
+    @Pattern(regexp = "/d+", message = "The Phone Number must contain only digits")
+    @NotBlank(message = "The Phone Number mustn't be empty")
     @Column(name = "phone_number")
     private String phoneNumber;
 
@@ -69,20 +70,5 @@ public class Guest {
         this.cardId = cardId;
         this.arrivalDate = arrivalDate;
         this.departureDate = departureDate;
-    }
-
-    @Override
-    public String toString() {
-        return "Guest{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", birthDate=" + birthDate +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", identityCard=" + identityCard +
-                ", cardId='" + cardId + '\'' +
-                ", arrivalDate=" + arrivalDate +
-                ", departureDate=" + departureDate +
-                '}';
     }
 }
